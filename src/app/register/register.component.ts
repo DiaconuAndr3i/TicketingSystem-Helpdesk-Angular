@@ -11,13 +11,13 @@ import { Registration } from '../models/registration';
 export class RegisterComponent implements OnInit {
 
   registrationForm = this.fb.group({
-    firstName: ['', [Validators.required, Validators.minLength(2)]],
-    lastName: ['', [Validators.required, Validators.minLength(2)]],
-    phoneNumber: ['', Validators.required],
+    first_Name: ['', [Validators.required, Validators.minLength(2)]],
+    last_Name: ['', [Validators.required, Validators.minLength(2)]],
+    phone_Number: ['', Validators.required],
     email: ['', Validators.required],
     password: ['', Validators.required],
-    institutionName: ['', Validators.required],
-    roleName: ['', Validators.required]
+    institutionName: ['-select-', Validators.required],
+    roleName: ['-select-', Validators.required]
   });
 
 

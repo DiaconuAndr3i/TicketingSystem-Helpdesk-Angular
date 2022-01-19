@@ -1,7 +1,7 @@
 export class Registration{
-    public FirstName: string | undefined;
-    public LastName: string | undefined;
-    public PhoneNumber: string | undefined;
+    public First_Name: string | undefined;
+    public Last_Name: string | undefined;
+    public Phone_Number: string | undefined;
     public Email: string | undefined;
     public Password: string | undefined;
     public InstitutionName: string | undefined;

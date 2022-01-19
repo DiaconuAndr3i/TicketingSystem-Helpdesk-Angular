@@ -1,50 +1,114 @@
-<!-- <form [formGroup]="registrationForm" (ngSubmit)="onRegister()">
-    <p class="label">First Name</p>
-    <input formControlName="firstName" placeholder="First Name" type="text">
-    
-    <p class="label">Last Name</p>
-    <input formControlName="lastName" placeholder="Last Name" type="text">
+<div class="container">
+  <div class="row main">
+    <div class="panel-heading">
+             <div class="panel-title text-center">
+                 <h2 class="title">Ticketing System - Registration</h2>
+                 <hr />
+               </div>
+          </div> 
+    <div class="main-login main-center">
+      <form class="form-horizontal" method="post" action="#" [formGroup]="registrationForm" (ngSubmit)="onRegister()">
+        
+        <div class="form-group" >
+          <label for="name" class="cols-sm-2 control-label">First name</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+              <input type="text" class="form-control" name="firtstName" id="firtstName"  placeholder="Your First name" formControlName="first_Name"/>
+            </div>
+          </div>
+        </div>
 
-    <p class="label">Phone Number</p>
-    <input formControlName="phoneNumber" placeholder="Phone Number" type="text">
+        <div class="form-group">
+          <label for="name" class="cols-sm-2 control-label">Last name</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+              <input type="text" class="form-control" name="lastName" id="lastName"  placeholder="Your Last name" formControlName="last_Name"/>
+            </div>
+          </div>
+        </div>
 
-    <p class="label">Email</p>
-    <input formControlName="email" placeholder="Email" type="text">
+        <div class="form-group">
+          <label for="email" class="cols-sm-2 control-label">Email</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+              <input type="text" class="form-control" name="email" id="email"  placeholder="Your Email" formControlName="email"/>
+            </div>
+          </div>
+        </div>
 
-    <p class="label">Password</p>
-    <input formControlName="password" placeholder="Password" type="password">
+        <div class="form-group">
+          <label for="mobile" class="cols-sm-2 control-label required">Mobile</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-mobile" aria-hidden="true"></i></span>
+              <input type="text" class="form-control" name="mobile" id="mobile"  placeholder="Your Mobile" formControlName="phone_Number"/>
+            </div>
+          </div>
+        </div>
 
-    <p class="label">Institution</p>
-    <input formControlName="institutionName" placeholder="Institution Name" type="text">
+        <div class="form-group">
+          <label for="country" class="cols-sm-2 control-label">Role</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-map-marker fa-lg" aria-hidden="true"></i></span>
+              <select formControlName="roleName" class="form-control" name="roleName" id="roleName"  placeholder="Please select your Role">
+                                <option>-select-</option>
+                                <option>Dean</option>
+                                <option>Secretary Administration and Buisness</option>
+                                <option>Secretary Computer and Information Technology</option>
+                                <option>Secretary Computer Science</option>
+                                <option>Secretary Mathematics</option>
+                                <option>Student</option>
+                                </select>
+            </div>
+          </div>
+        </div>
 
-    <p class="label">Role</p>
-    <input formControlName="roleName" placeholder="Role Name" type="text">
 
-    <button type="submit">Register</button>
-</form>
+        <div class="form-group">
+          <label for="nationality" class="cols-sm-2 control-label">Institution name</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-globe fa-lg" aria-hidden="true"></i></span>
+              <select class="form-control" name="institutionName" id="institutionName"  placeholder="Please select your Institution Name" formControlName="institutionName">
+                                <option>-select-</option>
+                                <option>Faculty of Mathematics and Computer Science</option>
+                                <option>Faculty of Administration and Business</option>
+                                </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" >
+          <label for="password" class="cols-sm-2 control-label">Password</label>
+          <div class="cols-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+              <input type="password" class="form-control" name="password" id="password"  placeholder="Choose a password" formControlName="password"/>
+            </div>
+          </div>
+        </div>
 
 
-<div>
-    <span>
-        Already have an account? Login <a routerLink="/login">here</a>.
-    </span>
+        <div class="form-group ">
+          <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+        </div>
 
+
+        <div class="alreadyAccount">
+          <span>
+              Already have an account? Login <a routerLink="/login">here</a>.
+          </span>
+        
+        </div>
+
+
+      </form>
+    </div>
+  </div>
 </div>
 
-<p>Form Status: {{ registrationForm.status }}</p> -->
-<form>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    </div>
-    <div class="form-group">
-      <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div>
-    <div class="form-group form-check">
-      <input type="checkbox" class="form-check-input" id="exampleCheck1">
-      <label class="form-check-label" for="exampleCheck1">Check me out</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+<p>Form Status: {{ registrationForm.status }}</p>
