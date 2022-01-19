@@ -37,6 +37,12 @@ export class AuthentificationService {
   isLoggedin(){
     const token  = localStorage.getItem('token') || "";
     return !this.jwtService.isTokenExpired(token);
+    
+  }
+
+  getRolesToken(){
+    const token  = localStorage.getItem('token') || "";
+    return this.jwtService.decodeToken(token).role;
   }
 
 
