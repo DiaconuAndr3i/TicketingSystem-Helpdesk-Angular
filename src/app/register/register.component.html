@@ -1,1 +1,50 @@
-<p>register works!</p>
+<!-- <form [formGroup]="registrationForm" (ngSubmit)="onRegister()">
+    <p class="label">First Name</p>
+    <input formControlName="firstName" placeholder="First Name" type="text">
+    
+    <p class="label">Last Name</p>
+    <input formControlName="lastName" placeholder="Last Name" type="text">
+
+    <p class="label">Phone Number</p>
+    <input formControlName="phoneNumber" placeholder="Phone Number" type="text">
+
+    <p class="label">Email</p>
+    <input formControlName="email" placeholder="Email" type="text">
+
+    <p class="label">Password</p>
+    <input formControlName="password" placeholder="Password" type="password">
+
+    <p class="label">Institution</p>
+    <input formControlName="institutionName" placeholder="Institution Name" type="text">
+
+    <p class="label">Role</p>
+    <input formControlName="roleName" placeholder="Role Name" type="text">
+
+    <button type="submit">Register</button>
+</form>
+
+
+<div>
+    <span>
+        Already have an account? Login <a routerLink="/login">here</a>.
+    </span>
+
+</div>
+
+<p>Form Status: {{ registrationForm.status }}</p> -->
+<form>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <label for="exampleInputPassword1">Password</label>
+      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    </div>
+    <div class="form-group form-check">
+      <input type="checkbox" class="form-check-input" id="exampleCheck1">
+      <label class="form-check-label" for="exampleCheck1">Check me out</label>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
