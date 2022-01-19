@@ -20,6 +20,8 @@ export class LoginComponent implements OnInit {
   constructor(private fb: FormBuilder, private authentificationService: AuthentificationService) { }
 
   ngOnInit(): void {
+    if(this.authentificationService.isLoggedin())
+      this.authentificationService.logout();
   }
 
   onLogin(){
