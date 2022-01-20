@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { map, Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -40,9 +40,9 @@ export class AuthentificationService {
     
   }
 
-  getRolesToken(){
+  getRolesToken(): Observable<any>{
     const token  = localStorage.getItem('token') || "";
-    return this.jwtService.decodeToken(token).role;
+    return of(this.jwtService.decodeToken(token).role);
   }
 
 

@@ -1,19 +1,20 @@
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a *ngIf="optionsAfterLogin" class="navbar-brand" href="\home">HelpDesk</a>
-        <a *ngIf="!optionsAfterLogin" class="navbar-brand" href="\login">HelpDesk</a>
+        <a *ngIf="optionsAfterLogin" class="navbar-brand" routerLink="/home">HelpDesk</a>
+        <a *ngIf="!optionsAfterLogin" class="navbar-brand" routerLink="/login">HelpDesk</a>
       </div>
       <ul class="nav navbar-nav">
-        <li class="active"><a href="\home">Home</a></li>
+        <li class="active"><a routerLink="/home">Home</a></li>
         <li *ngIf="optionsAfterLogin"><a href="#">All tickets</a></li>
         <li *ngIf="optionsAfterLogin"><a href="#">Create ticket</a></li>
         <li *ngIf="optionsAfterLogin"><a href="#">About me</a></li>
+        <li *ngIf="optionsAdmin"><a routerLink="/requiredRoles">Required roles</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li *ngIf="!optionsAfterLogin"><a href="\register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li *ngIf="!optionsAfterLogin"><a href="\login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-        <li *ngIf="optionsAfterLogin"><a href="\login"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+        <li *ngIf="!optionsAfterLogin"><a routerLink="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li *ngIf="!optionsAfterLogin"><a routerLink="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+        <li *ngIf="optionsAfterLogin"><a routerLink="/login"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
       </ul>
     </div>
   </nav>
