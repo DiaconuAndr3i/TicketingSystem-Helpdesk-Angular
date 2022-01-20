@@ -11,13 +11,14 @@ import { UserService } from '../user.service';
 export class RequiredRolesAdminComponent implements OnInit {
 
   users: UserInformations[] = [];
-  institutionName = '';
+  institutionName: any = '';
 
 
   constructor(private userService: UserService) {
    }
 
   ngOnInit(): void {
+    this.institutionName = localStorage.getItem('institution');
   }
 
   onClick(dummy: any){

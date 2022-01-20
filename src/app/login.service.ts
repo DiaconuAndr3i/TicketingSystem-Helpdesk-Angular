@@ -8,13 +8,13 @@ import { UserService } from './user.service';
 })
 export class LoginService {
 
-  private loginResponseSource = new Subject<LoginResponse>();
+  loginResponseSource = new Subject<any>();
   //loginResponse?: LoginResponse;
 
-  loginResponse$ = this.loginResponseSource.asObservable();
+  /*loginResponse$ = this.loginResponseSource.asObservable();
 
   addLoginResponse(userData: LoginResponse){
     debugger
     this.loginResponseSource.next(userData);
-  }
+  }*/
 }

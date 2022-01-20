@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthentificationService } from '../authentification.service';
+import { LoginResponse } from '../interfaces/loginResponse';
+import { LoginService } from '../login.service';
 import { Login } from '../models/login';
 
 @Component({
@@ -9,7 +11,6 @@ import { Login } from '../models/login';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
 
   loginForm = this.fb.group({
     email: ['', Validators.required],

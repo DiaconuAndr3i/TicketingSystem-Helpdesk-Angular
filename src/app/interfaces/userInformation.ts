@@ -1,9 +1,9 @@
 export interface UserInformations{
-    IdUser: string;
-    FirstName: string;
-    LastName: string;
-    Email: string;
-    PhoneNumber: string;
-    Institution: string;
-    Roles: string[];
+    idUser: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phoneNumber: string;
+    institution: string;
+    roles: string[];
 }

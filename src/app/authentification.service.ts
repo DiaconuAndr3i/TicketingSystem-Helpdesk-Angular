@@ -29,7 +29,10 @@ export class AuthentificationService {
     return this.http.post<any>(`${this.authUrl}/login`, loginData)
     .pipe(map((response: any) => {
       if (response?.accessToken){
+        localStorage.setItem('firstName', response.firstName);
+        localStorage.setItem('lastName', response.lastname);
         localStorage.setItem('token', response.accessToken);
+        localStorage.setItem('institution', response.institution);
         this.router.navigate(['/home']);
       }
     }));
@@ -49,6 +52,9 @@ export class AuthentificationService {
 
   logout(){
     localStorage.removeItem('token');
+    localStorage.removeItem('firstName');
+    localStorage.removeItem('lastName');
+    localStorage.removeItem('institution');
     this.router.navigate(['/login']);
   }
 

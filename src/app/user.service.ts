@@ -9,14 +9,15 @@ import { LoginService } from './login.service';
 })
 export class UserService {
 
-  private Url = 'https://localhost:5001/api/Users';
+  private Url = 'https://localhost:5001';
 
   constructor(private http: HttpClient) {
    }
 
   getAllUsers(institutionName: any): Observable<any>{
     debugger
-    const url = `${this.Url}/${institutionName}`;
+    var institutionName = institutionName.replace(/ /g, "%20");
+    const url = `${this.Url}/getAllUsers/${institutionName}`;
     return this.http.get<UserInformations[]>(url);
   }
 }
