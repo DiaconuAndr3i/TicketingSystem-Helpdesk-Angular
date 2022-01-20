@@ -15,7 +15,7 @@ export class AuthentificationService {
     headers:  new HttpHeaders({'Content-Type': 'application/json'})
   };
 
-  constructor(private http: HttpClient, private router: Router, private jwtService: JwtHelperService, private loginService: LoginService) { }
+  constructor(private http: HttpClient, private router: Router, private jwtService: JwtHelperService) { }
 
 
   register(registerData: any): Observable<any>{
@@ -31,7 +31,6 @@ export class AuthentificationService {
       if (response?.accessToken){
         localStorage.setItem('token', response.accessToken);
         this.router.navigate(['/home']);
-        this.loginService.addLoginResponse(response);
       }
     }));
   }

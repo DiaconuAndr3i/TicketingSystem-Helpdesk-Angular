@@ -10,6 +10,7 @@ import { Login } from '../models/login';
 })
 export class LoginComponent implements OnInit {
 
+
   loginForm = this.fb.group({
     email: ['', Validators.required],
     password: ['', Validators.required],
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
   });
 
 
-  constructor(private fb: FormBuilder, private authentificationService: AuthentificationService) { }
+  constructor(private fb: FormBuilder, private authentificationService: AuthentificationService) {
+   }
 
   ngOnInit(): void {
     if(this.authentificationService.isLoggedin())
@@ -28,4 +30,5 @@ export class LoginComponent implements OnInit {
     var loginData = new Login(this.loginForm.value);
     this.authentificationService.login(loginData).subscribe();
   }
+
 }

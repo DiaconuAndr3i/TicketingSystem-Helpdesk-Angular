@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { LoginResponse } from './interfaces/loginResponse';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
-  loginResponse?: LoginResponse;
 
-  constructor() { }
+  private loginResponseSource = new Subject<LoginResponse>();
+  //loginResponse?: LoginResponse;
 
-  addLoginResponse(userData: any){
-    this.loginResponse = userData;
-  }
+  loginResponse$ = this.loginResponseSource.asObservable();
 
-  getLoginResponse(): Observable<any>{
-    return of(this.loginResponse);
+  addLoginResponse(userData: LoginResponse){
+    debugger
+    this.loginResponseSource.next(userData);
   }
 }
