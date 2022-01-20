@@ -58,5 +58,9 @@ export class AuthentificationService {
     this.router.navigate(['/login']);
   }
 
+  getToken(){
+    return localStorage.getItem('token');
+  }
+
 
 }

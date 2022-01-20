@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { JwtModule } from '@auth0/angular-jwt';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RequiredRolesAdminComponent } from './required-roles-admin/required-roles-admin.component';
+import { TokenInterceptorService } from './token-interceptor.service';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +36,11 @@ import { RequiredRolesAdminComponent } from './required-roles-admin/required-rol
         }
     }),
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
