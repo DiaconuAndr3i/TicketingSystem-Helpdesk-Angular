@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { map, Observable, of } from 'rxjs';
+import { LoginService } from './login.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class AuthentificationService {
     headers:  new HttpHeaders({'Content-Type': 'application/json'})
   };
 
-  constructor(private http: HttpClient, private router: Router, private jwtService: JwtHelperService) { }
+  constructor(private http: HttpClient, private router: Router, private jwtService: JwtHelperService, private loginService: LoginService) { }
 
 
   register(registerData: any): Observable<any>{
@@ -30,6 +31,7 @@ export class AuthentificationService {
       if (response?.accessToken){
         localStorage.setItem('token', response.accessToken);
         this.router.navigate(['/home']);
+        this.loginService.addLoginResponse(response);
       }
     }));
   }
