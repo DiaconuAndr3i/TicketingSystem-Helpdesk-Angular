@@ -1,7 +1,7 @@
 export interface LoginResponse {
-    FirstName: string;
-    Lastname: string;
-    AccessToke: string;
-    Institution: string;
-    Roles: string[];
+    firstName: string;
+    lastname: string;
+    accessToke: string;
+    institution: string;
+    roles: string[];
   }

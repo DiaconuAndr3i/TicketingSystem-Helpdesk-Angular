@@ -13,6 +13,8 @@ export class NavbarComponent implements OnInit {
   optionsAdmin: boolean = false;
   roles: any[] = [];
   myInstitName?: string;
+  firstName?: string;
+  lastName?: string;
 
   constructor(private authService: AuthentificationService, private route: ActivatedRoute) { }
 
@@ -21,6 +23,8 @@ export class NavbarComponent implements OnInit {
         this.optionsAfterLogin = true;
         this.authService.getRolesToken().subscribe(roles => this.roles = roles);
         this.myInstitName = String(this.route.snapshot.paramMap.get('myInstitName')); 
+        this.firstName = String(this.route.snapshot.paramMap.get('firstName'));
+        this.lastName = String(this.route.snapshot.paramMap.get('lastName'));
         if (this.roles.includes('Administrator'))
           this.optionsAdmin = true;
       } 

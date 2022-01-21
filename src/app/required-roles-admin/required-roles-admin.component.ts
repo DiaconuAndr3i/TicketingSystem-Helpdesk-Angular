@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { UserInformations } from '../interfaces/userInformation';
 import { LoginService } from '../login.service';
 import { UserService } from '../user.service';
@@ -14,11 +15,11 @@ export class RequiredRolesAdminComponent implements OnInit {
   institutionName: any = '';
 
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private route: ActivatedRoute) {
    }
 
   ngOnInit(): void {
-    this.institutionName = localStorage.getItem('institution');
+    this.institutionName = String(this.route.snapshot.paramMap.get('myInstitName')); 
   }
 
   onClick(dummy: any){
