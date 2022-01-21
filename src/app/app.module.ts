@@ -12,6 +12,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { NavbarComponent } from './navbar/navbar.component';
 import { RequiredRolesAdminComponent } from './required-roles-admin/required-roles-admin.component';
 import { TokenInterceptorService } from './token-interceptor.service';
+import { UsersInformationsComponent } from './users-informations/users-informations.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { TokenInterceptorService } from './token-interceptor.service';
     RegisterComponent,
     LoginComponent,
     NavbarComponent,
-    RequiredRolesAdminComponent
+    RequiredRolesAdminComponent,
+    UsersInformationsComponent
   ],
   imports: [
     BrowserModule,

@@ -2,7 +2,6 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthentificationService } from '../authentification.service';
 import { LoginResponse } from '../interfaces/loginResponse';
-import { LoginService } from '../login.service';
 import { Login } from '../models/login';
 
 @Component({

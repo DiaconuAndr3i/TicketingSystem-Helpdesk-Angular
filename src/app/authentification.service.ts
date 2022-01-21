@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { map, Observable, of } from 'rxjs';
-import { LoginService } from './login.service';
 
 @Injectable({
   providedIn: 'root'
