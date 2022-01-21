@@ -14,10 +14,10 @@ export class UsersInformationsComponent implements OnInit {
   subscription: Subscription;
 
   constructor(private usersInformations: UsersInformationsService) {
+    debugger;
     this.subscription = usersInformations.userInformations$.subscribe((response: UserInformations[] )=>{
       this.users = response;
     });
-
    }
 
   ngOnInit(): void {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { UserInformations } from '../interfaces/userInformation';
 import { UserService } from '../user.service';
+import { UsersInformationsService } from '../users-informations.service';
 
 @Component({
   selector: 'app-required-roles-admin',
@@ -14,7 +15,7 @@ export class RequiredRolesAdminComponent implements OnInit {
   institutionName: any = '';
 
 
-  constructor(private userService: UserService, private route: ActivatedRoute) {
+  constructor(private userService: UserService, private route: ActivatedRoute, private usersInformations: UsersInformationsService) {
    }
 
   ngOnInit(): void {
@@ -24,7 +25,13 @@ export class RequiredRolesAdminComponent implements OnInit {
   onClick(dummy: any){
     debugger
     if (dummy == 0)
-      this.userService.getAllUsers(this.institutionName).subscribe(response => this.users = response);
+      {
+        this.userService.getAllUsers(this.institutionName).subscribe(response => {
+          this.users = response;   
+          this.usersInformations.userInformationsMethod(this.users);
+        });
+        
+      }
   }
 
 }
