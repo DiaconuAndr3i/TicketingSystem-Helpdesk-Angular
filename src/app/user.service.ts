@@ -19,4 +19,10 @@ export class UserService {
     const url = `${this.Url}/getAllUsers/${institutionName}`;
     return this.http.get<UserInformations[]>(url);
   }
+  getAllGuest(institutionName: any): Observable<any>{
+    debugger
+    var institutionName = institutionName.replace(/ /g, "%20");
+    const url = `${this.Url}/getAllGuests/${institutionName}`;
+    return this.http.get<UserInformations[]>(url);
+  }
 }

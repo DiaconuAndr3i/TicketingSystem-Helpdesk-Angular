@@ -1,4 +1,4 @@
-<ul>
+<ul *ngIf="this.selector">
     <li *ngFor="let user of users">
         {{user.firstName}}
     </li>

@@ -1,0 +1,5 @@
+<ul *ngIf="!this.selector">
+    <li *ngFor="let guest of guests">
+        {{guest.userInformationsModel.email}} {{guest.userInformationsModel.idUser}}
+    </li>
+</ul>

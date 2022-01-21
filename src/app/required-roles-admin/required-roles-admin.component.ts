@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { GuestInformations } from '../interfaces/guestInformations';
 import { UserInformations } from '../interfaces/userInformation';
 import { UserService } from '../user.service';
 import { UsersInformationsService } from '../users-informations.service';
@@ -12,8 +13,8 @@ import { UsersInformationsService } from '../users-informations.service';
 export class RequiredRolesAdminComponent implements OnInit {
 
   users: UserInformations[] = [];
+  guests: GuestInformations[] = [];
   institutionName: any = '';
-
 
   constructor(private userService: UserService, private route: ActivatedRoute, private usersInformations: UsersInformationsService) {
    }
@@ -29,8 +30,15 @@ export class RequiredRolesAdminComponent implements OnInit {
         this.userService.getAllUsers(this.institutionName).subscribe(response => {
           this.users = response;   
           this.usersInformations.userInformationsMethod(this.users);
+          this.usersInformations.showSpecificList(true);
         });
-        
+      }
+      else{
+        this.userService.getAllGuest(this.institutionName).subscribe(response => {
+          this.guests = response;   
+          this.usersInformations.guestInformationsMethod(this.guests);
+          this.usersInformations.showSpecificList(false);
+        });
       }
   }
 

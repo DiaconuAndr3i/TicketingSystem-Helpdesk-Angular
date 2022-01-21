@@ -13,6 +13,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { RequiredRolesAdminComponent } from './required-roles-admin/required-roles-admin.component';
 import { TokenInterceptorService } from './token-interceptor.service';
 import { UsersInformationsComponent } from './users-informations/users-informations.component';
+import { GuestInformationsComponent } from './guest-informations/guest-informations.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { UsersInformationsComponent } from './users-informations/users-informati
     LoginComponent,
     NavbarComponent,
     RequiredRolesAdminComponent,
-    UsersInformationsComponent
+    UsersInformationsComponent,
+    GuestInformationsComponent
   ],
   imports: [
     BrowserModule,
