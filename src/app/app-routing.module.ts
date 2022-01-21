@@ -8,11 +8,12 @@ import { RegisterComponent } from './register/register.component';
 import { RequiredRolesAdminComponent } from './required-roles-admin/required-roles-admin.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full'},
+  { path: '', redirectTo: '/login', pathMatch: 'full'},
+  { path: 'home/:myInstitName', component: HomeComponent, canActivate: [AuthentificationGuard]},
   { path: 'home', component: HomeComponent, canActivate: [AuthentificationGuard]},
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
-  { path: 'requiredRoles', component: RequiredRolesAdminComponent, canActivate: [AdminGuard]}
+  { path: 'requiredRoles/:myInstitName', component: RequiredRolesAdminComponent, canActivate: [AdminGuard]}
 ];
 
 @NgModule({
