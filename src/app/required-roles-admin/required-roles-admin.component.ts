@@ -30,14 +30,14 @@ export class RequiredRolesAdminComponent implements OnInit {
         this.userService.getAllUsers(this.institutionName).subscribe(response => {
           this.users = response;   
           this.usersInformations.userInformationsMethod(this.users);
-          this.usersInformations.showSpecificList(true);
+          this.usersInformations.showSpecificList(-1);
         });
       }
       else{
         this.userService.getAllGuest(this.institutionName).subscribe(response => {
           this.guests = response;   
           this.usersInformations.guestInformationsMethod(this.guests);
-          this.usersInformations.showSpecificList(false);
+          this.usersInformations.showSpecificList(1);
         });
       }
   }

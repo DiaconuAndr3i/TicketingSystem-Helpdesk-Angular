@@ -1,5 +1,45 @@
-<ul *ngIf="!this.selector">
-    <li *ngFor="let guest of guests">
-        {{guest.userInformationsModel.email}} {{guest.userInformationsModel.idUser}}
-    </li>
-</ul>
+
+<table class="table table-dark table-striped" *ngIf="this.selector == 1">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Current Roles</th>
+        <th scope="col">Required Roles</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let guest of guests; let i = index">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{guest.userInformationsModel.firstName}}</td>
+        <td>{{guest.userInformationsModel.lastName}}</td>
+        <td>{{guest.userInformationsModel.email}}</td>
+        <td>{{guest.userInformationsModel.phoneNumber}}</td>
+        <td>
+          <div class="dropdown">
+            <button class="dropbtn">Show Roles</button>
+            <div class="dropdown-content">
+              <a *ngFor="let role of guest.userInformationsModel.roles">{{role}}</a>
+            </div>
+          </div>
+        </td>
+        <td>
+            <div class="dropdown">
+              <button class="dropbtn">Required Roles</button>
+              <div class="dropdown-content">
+                <a *ngFor="let role of guest.requiredRoles">{{role}}</a>
+              </div>
+            </div>
+          </td>
+        <td>  
+          <div class="dropdown">
+            <button (click)="onAssignRole(guest.userInformationsModel.email, guest.requiredRoles)" class="dropbtn2">Assign Roles</button>
+          </div>
+      </td>
+      </tr>
+    </tbody>
+</table>

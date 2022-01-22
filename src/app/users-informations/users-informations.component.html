@@ -1,47 +1,36 @@
-<ul *ngIf="this.selector">
-    <li *ngFor="let user of users">
-        {{user.firstName}}
-    </li>
-</ul>
 
-
-<table class="table table-dark table-striped">
+<table class="table table-dark table-striped" *ngIf="this.selector == -1">
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Roles</th>
+        <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
+      <tr *ngFor="let user of users; let i = index">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.phoneNumber}}</td>
+        <td>
+          <div class="dropdown">
+            <button class="dropbtn">Show Roles</button>
+            <div class="dropdown-content">
+              <a *ngFor="let role of user.roles">{{role}}</a>
+            </div>
+          </div>
+        </td>
+        <td>  
+          <div class="dropdown">
+            <button (click)="onDelete(user.email)" class="dropbtn2">Delete User</button>
+          </div>
+      </td>
       </tr>
     </tbody>
   </table>
-
-  <div class="dropdown">
-    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Dropdown button
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-      <a class="dropdown-item" href="#">Action</a>
-      <a class="dropdown-item" href="#">Another action</a>
-      <a class="dropdown-item" href="#">Something else here</a>
-    </div>
-  </div>

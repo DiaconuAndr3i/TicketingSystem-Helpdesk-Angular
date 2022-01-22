@@ -10,7 +10,7 @@ export class UsersInformationsService {
 
   private usersInformationsSource = new Subject<UserInformations[]>();
   private guestsInformationsSource = new Subject<GuestInformations[]>();
-  private selectorSource = new Subject<boolean>();
+  private selectorSource = new Subject<number>();
 
   userInformations$ = this.usersInformationsSource.asObservable();
   guestInformations$ = this.guestsInformationsSource.asObservable();
@@ -24,7 +24,7 @@ export class UsersInformationsService {
     this.guestsInformationsSource.next(userData);
   }
 
-  showSpecificList(val: boolean){
+  showSpecificList(val: number){
     this.selectorSource.next(val);
   }
 
