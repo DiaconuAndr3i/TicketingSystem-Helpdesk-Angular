@@ -12,5 +12,6 @@ export class TicketModel{
         Object.assign(this, init);
         this.CreatedDate = new Date();
         this.Status = 'Open';
+        this.TicketCreatorEmail = localStorage.getItem('email') || "";
     }
 }

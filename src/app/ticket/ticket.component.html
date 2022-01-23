@@ -1,1 +1,35 @@
-<p>ticket works!</p>
+<app-navbar></app-navbar>
+<form [formGroup]="ticketForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Title</label>
+        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Input title for ticket" formControlName="title">
+      </div>
+    <div class="form-group">
+      <label for="exampleFormControlInput1">Send To</label>
+      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" formControlName="arrivalEmail">
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlSelect1">Priority</label>
+      <select class="form-control" id="exampleFormControlSelect1" formControlName="priority">
+        <option>-select-</option>
+        <option>Important</option>
+        <option>Normal</option>
+      </select>
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlSelect1">Tag</label>
+        <select class="form-control" id="exampleFormControlSelect1" formControlName="tag">
+            <option>-select-</option>
+          <option>Question</option>
+          <option>Document request</option>
+        </select>
+      </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Message</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Please Enter your message" formControlName="contentMessage"></textarea>
+    </div>
+
+    <div class="form-group ">
+        <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Submit</button>
+      </div>
+  </form>

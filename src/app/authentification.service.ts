@@ -29,6 +29,7 @@ export class AuthentificationService {
     .pipe(map((response: any) => {
       if (response?.accessToken){
         localStorage.setItem('token', response.accessToken);
+        localStorage.setItem('email', loginData.email);
         this.router.navigate([`/home/${response.institution}/${response.firstName}/${response.lastname}`]);
       }
     }));
@@ -47,6 +48,7 @@ export class AuthentificationService {
 
 
   logout(){
+    localStorage.removeItem('email');
     localStorage.removeItem('token');
     this.router.navigate(['/login']);
   }
