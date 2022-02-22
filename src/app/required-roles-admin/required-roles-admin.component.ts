@@ -20,26 +20,27 @@ export class RequiredRolesAdminComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.institutionName = String(this.route.snapshot.paramMap.get('myInstitName')); 
+    this.institutionName = String(this.route.snapshot.paramMap.get('myInstitName'));
+    this.userService.getAllUsers(this.institutionName).subscribe(response =>{
+      this.users = response;
+      this.usersInformations.userInformationsMethod(this.users);
+      this.usersInformations.showSpecificList(-1);
+    }); 
   }
 
   onClick(dummy: any){
     debugger
-    if (dummy == 0)
-      {
-        this.userService.getAllUsers(this.institutionName).subscribe(response => {
-          this.users = response;   
-          this.usersInformations.userInformationsMethod(this.users);
-          this.usersInformations.showSpecificList(-1);
-        });
+    this.userService.getAllUsers(this.institutionName).subscribe(response => {
+      this.users = response;
+      if (dummy == 0){
+        this.usersInformations.userInformationsMethod(this.users);
+        this.usersInformations.showSpecificList(-1);
       }
       else{
-        this.userService.getAllGuest(this.institutionName).subscribe(response => {
-          this.guests = response;   
-          this.usersInformations.guestInformationsMethod(this.guests);
-          this.usersInformations.showSpecificList(1);
-        });
-      }
+        this.usersInformations.guestInformationsMethod(this.guests);
+        this.usersInformations.showSpecificList(1);
+      }   
+    });
   }
 
 }
