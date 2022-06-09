@@ -1,7 +1,11 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogEmailArrivailsComponent } from '../dialog-email-arrivails/dialog-email-arrivails.component';
 import { CreateTicketModel } from '../models/createTicketModel';
 import { TicketModel } from '../models/ticketModel';
+import { NotifierService } from '../notifier.service';
 import { TicketService } from '../ticket.service';
 
 @Component({
@@ -19,7 +23,13 @@ export class TicketComponent implements OnInit {
     contentMessage: ['', Validators.required]
   });
 
-  constructor(private fb: FormBuilder, private ticketService: TicketService) { }
+  tags: string[] = ['Question', 'Document request'];
+
+  emailArrivail?: String
+
+  constructor(private fb: FormBuilder, 
+    private ticketService: TicketService, 
+    public dialog: MatDialog, private notificationService: NotifierService) { }
 
   ngOnInit(): void {
   }
@@ -36,9 +46,24 @@ export class TicketComponent implements OnInit {
     ticketModel.ArrivalEmail = this.ticketForm.value.arrivalEmail;
     ticketModel.Title = this.ticketForm.value.title;
     ticketModel.Priority = this.ticketForm.value.priority;
-    ticketModel.Tag = [this.ticketForm.value.tag];
+    ticketModel.Tag = this.ticketForm.value.tag;
     ticketData.TicketModel = ticketModel;
-    this.ticketService.createTicket(ticketData).subscribe();
+    this.ticketService.createTicket(ticketData).subscribe((response) => {
+      this.notificationService.notificationAlert('Ticket successfully created', 'success');
+    },
+    (error: HttpErrorResponse) => {
+      this.notificationService.notificationAlert('Something went wrong with the ticket', 'error');
+    });
+  }
+
+  openDialog(): void{
+    const dialogRef = this.dialog.open(DialogEmailArrivailsComponent, {
+      data: {name: this.emailArrivail}
+    });
+
+    dialogRef.afterClosed().subscribe(result =>{
+      this.emailArrivail = result;
+    })
   }
 
 }

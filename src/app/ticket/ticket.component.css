@@ -1,0 +1,15 @@
+form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: auto;
+  }
+
+.form-group{
+  margin: auto;
+  width: 20%;
+}
+
+.form-group>button{
+  width: 100%;
+}

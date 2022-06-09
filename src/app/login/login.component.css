@@ -22,3 +22,15 @@ hr{
  .alreadyAccount{
     margin: auto;
  }
+
+
+ .classForm{
+   margin: auto;
+   clear: both;
+   width: 50px;
+ }
+
+ .form{
+   width: 100%;
+   clear: both;
+ }

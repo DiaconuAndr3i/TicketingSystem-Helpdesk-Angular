@@ -25,4 +25,8 @@ export class StatisticsService {
   getPercentageGuests(): Observable<number>{
     return this.http.get<number>(`${this.URL}/percentageGuests`);
   }
+
+  getNumberOfInstitutions(): Observable<number>{
+    return this.http.get<number>(`${this.URL}/numberOfInstituions`);
+  }
 }

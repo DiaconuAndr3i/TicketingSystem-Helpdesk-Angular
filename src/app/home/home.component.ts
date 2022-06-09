@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { StatisticsService } from '../statistics.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { StatisticsService } from '../statistics.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
 
 
   counterUsers: number = 0;
@@ -43,10 +43,21 @@ export class HomeComponent implements OnInit {
     }
   },100);
 
-  constructor(private statsService: StatisticsService) { }
+  counterInstitutions: number = 0;
+  counterInstitutionsLimit?: number;
+  counterInstitutionsStop: any = setInterval(() => {
+    if (this.counterInstitutionsLimit != undefined && this.counterInstitutionsLimit != 0)
+      this.counterInstitutions++;
+
+    if (this.counterInstitutions == this.counterInstitutionsLimit){
+      clearInterval(this.counterInstitutionsStop);
+    }
+  },100);
+
+  constructor(private statsService: StatisticsService) { 
+    }
 
   ngOnInit(): void {
-
     this.statsService.getNumberOfUsers().subscribe(response =>{
       this.counterUsersLimit = response;
       this.statsService.getPercentageGuests().subscribe(res => {
@@ -58,6 +69,15 @@ export class HomeComponent implements OnInit {
     this.statsService.getNumberOfTickets().subscribe(response => {
       this.counterTicketsLimit = response; 
     });
+
+    this.statsService.getNumberOfInstitutions().subscribe(response =>{
+      this.counterInstitutionsLimit = response;
+    })
+  }
+
+
+  ngOnDestroy(): void {
+    
   }
 
 }

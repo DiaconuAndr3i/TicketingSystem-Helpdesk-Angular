@@ -1,0 +1,45 @@
+<h1 mat-dialog-title>Choose a person</h1>
+<div mat-dialog-content>
+    <mat-form-field *ngIf="this.users.length === 0" appearance="fill">
+        <mat-label>Department</mat-label>
+        <mat-select required>
+            <mat-option *ngFor="let department of this.departments" value="{{department.id}}" (click)="getSubdepartment(department.id, department.name)">{{department.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field *ngIf="this.subdepartments.length !== 0 && this.users.length === 0" appearance="fill">
+        <mat-label>Subdepartment</mat-label>
+        <mat-select>
+            <mat-option *ngFor="let subdepartment of this.subdepartments" value="{{subdepartment.departmentModel.name}}" (click)="onGetArrivals(subdepartment.departmentModel.name)">
+                {{subdepartment.departmentModel.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-accordion *ngIf="this.users.length !== 0">
+
+        
+        <mat-radio-group aria-label="Select an option" [(ngModel)]="data.name">
+            <mat-radio-button *ngFor="let user of this.users" [value]="user.email">
+        <mat-expansion-panel  hideToggle>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    <p>{{user.firstName}}  {{user.lastName}}</p>
+                </mat-panel-title>
+                <mat-panel-description>
+                    <p>{{this.departmentSelected}} <span *ngIf="this.subdepartmentSelected !== ''">{{this.subdepartmentSelected}}</span></p>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+        <p>Email: {{user.email}}</p>
+        <p>Phone number: {{user.phoneNumber}}</p>
+        </mat-expansion-panel>
+        </mat-radio-button>
+        </mat-radio-group>
+
+    </mat-accordion>
+
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="data.name" cdkFocusInitial>Ok</button>
+</div>

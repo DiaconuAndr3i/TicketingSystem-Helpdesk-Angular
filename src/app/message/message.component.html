@@ -1,0 +1,21 @@
+<div id="container">
+<mat-card *ngFor="let message of messages" 
+[ngClass]="this.emailCurrentUser === message.messageModel.emailCreator ? 'message right' : 'message left'">
+    <mat-card-subtitle>{{message.messageModel.emailCreator}}</mat-card-subtitle>
+    <mat-card-content>
+      <p>{{message.messageModel.contentMessage}}</p>
+    </mat-card-content>
+</mat-card>
+</div>
+
+
+<form [formGroup]="messageForm" (ngSubmit)="Send()">
+<mat-form-field class="form-field">
+  <textarea matInput placeholder="Enter your message" maxlength="500" #message formControlName="contentMessage"></textarea>
+  <mat-hint align="end">{{message.value.length}}/500</mat-hint>
+</mat-form-field>
+
+<div class="form-group">
+  <button mat-raised-button type="submit" >Send</button>
+</div>
+</form>

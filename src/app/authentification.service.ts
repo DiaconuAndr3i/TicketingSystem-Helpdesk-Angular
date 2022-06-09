@@ -14,7 +14,9 @@ export class AuthentificationService {
     headers:  new HttpHeaders({'Content-Type': 'application/json'})
   };
 
-  constructor(private http: HttpClient, private router: Router, private jwtService: JwtHelperService) { }
+  constructor(private http: HttpClient, 
+    private router: Router, 
+    private jwtService: JwtHelperService) { }
 
 
   register(registerData: any): Observable<any>{
@@ -30,7 +32,11 @@ export class AuthentificationService {
       if (response?.accessToken){
         localStorage.setItem('token', response.accessToken);
         localStorage.setItem('email', loginData.email);
+        localStorage.setItem('institution', loginData.institution);
+        localStorage.setItem('firstName', response.firstName);
+        localStorage.setItem('lastName', response.lastname);
         this.router.navigate([`/home/${response.institution}/${response.firstName}/${response.lastname}`]);
+        return response;
       }
     }));
   }
@@ -38,7 +44,6 @@ export class AuthentificationService {
   isLoggedin(){
     const token  = localStorage.getItem('token') || "";
     return !this.jwtService.isTokenExpired(token);
-    
   }
 
   getRolesToken(): Observable<any>{
@@ -50,6 +55,9 @@ export class AuthentificationService {
   logout(){
     localStorage.removeItem('email');
     localStorage.removeItem('token');
+    localStorage.removeItem('institution');
+    localStorage.removeItem('firstName');
+    localStorage.removeItem('lastName');
     this.router.navigate(['/login']);
   }
 

@@ -1,1 +1,138 @@
-<router-outlet></router-outlet>
+  <!--<nav class="navbar navbar-expand-lg navbar-light dark-lt bg-dark">
+
+      <a *ngIf="!optionsAfterLogin" class="navbar-brand" routerLink="/login">HelpDesk</a>
+      <a *ngIf="optionsAfterLogin" class="navbar-brand" routerLink="/home/{{this.myInstitName}}/{{this.firstName}}/{{this.lastName}}">HelpDesk</a>
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          <li *ngIf="optionsAfterLogin">
+            <a class="nav-link active" aria-current="page" routerLink="/home/{{this.myInstitName}}/{{this.firstName}}/{{this.lastName}}"><span class="myClass">Home</span></a>
+          </li>
+
+          <li *ngIf="!optionsAfterLogin">
+            <a class="nav-link active" aria-current="page" routerLink="/home"><span class="myClass">Home</span></a>
+          </li>
+
+          <li *ngIf="optionsAfterLogin" class="dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="myClass">All tickets</span>
+            </a>
+            
+            <ul class="dropdown-menu dropdown-content" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item">Tickets received</a></li>
+              <li><a class="dropdown-item">Tickets sent</a></li>
+            </ul>
+
+          </li>
+
+          <li *ngIf="optionsAfterLogin">
+            <a routerLink="/createTicket" class="nav-link"><span class="myClass">Create ticket</span></a>
+          </li>
+
+          <li *ngIf="optionsAfterLogin">
+            <a class="nav-link"><span class="myClass">About account</span></a>
+          </li>
+
+          <li *ngIf="optionsAdmin">
+            <a class="nav-link" routerLink="/requiredRoles/{{this.myInstitName}}/{{this.firstName}}/{{this.lastName}}"><span class="myClass">Required roles</span></a>
+          </li>
+
+        </ul>
+
+        <div class="nav navbar-nav navbar-right">
+          <div *ngIf="!optionsAfterLogin"><a class="credButtons" routerLink="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></div>
+          <span *ngIf="!optionsAfterLogin"><a class="credButtons"  routerLink="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></span>
+          <span *ngIf="optionsAfterLogin"><a class="credButtons"  routerLink="/login"><span class="glyphicon glyphicon-log-out"></span> Logout</a></span>
+        </div>
+  </nav>-->
+
+
+
+
+
+
+<mat-toolbar>
+    <button mat-icon-button *ngIf="menuleft.mode === 'over'" (click)="menuleft.toggle()">
+      <mat-icon *ngIf="!menuleft.opened">menu</mat-icon>
+      <mat-icon *ngIf="menuleft.opened">close</mat-icon>
+    </button>
+    <div *ngIf="!optionsAfterLogin" routerLink="/login">HelpDesk</div>
+    <div *ngIf="optionsAfterLogin" routerLink="/home/{{this.myInstitName}}/{{this.firstName}}/{{this.lastName}}">HelpDesk</div>
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav #menuleft="matSidenav" class="mat-elevation-z8">
+
+      <p *ngIf="optionsAfterLogin" class="designation">Welcome!</p>
+      <h4 *ngIf="optionsAfterLogin" class="name">{{this.firstName}} {{this.lastName}}</h4>
+
+      <mat-divider *ngIf="optionsAfterLogin"></mat-divider>
+      
+      <button mat-button class="buttons">
+        <mat-icon *ngIf="optionsAfterLogin" routerLink="/home/{{this.myInstitName}}/{{this.firstName}}/{{this.lastName}}" (click)="menuleft.toggle()">home</mat-icon>
+        <span *ngIf="optionsAfterLogin" routerLink="/home/{{this.myInstitName}}/{{this.firstName}}/{{this.lastName}}" (click)="menuleft.toggle()">Home</span>
+        <mat-icon *ngIf="!optionsAfterLogin" routerLink="/home" (click)="menuleft.toggle()">home</mat-icon>
+        <span *ngIf="!optionsAfterLogin" routerLink="/home" (click)="menuleft.toggle()">Home</span>
+      </button>
+  
+      <button *ngIf="optionsAfterLogin" mat-button class="buttons">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.51.88 4.93 1.78C15.57 19.36 13.86 20 12 20s-3.57-.64-4.93-1.72zm11.29-1.45c-1.43-1.74-4.9-2.33-6.36-2.33s-4.93.59-6.36 2.33C4.62 15.49 4 13.82 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.82-.62 3.49-1.64 4.83zM12 6c-1.94 0-3.5 1.56-3.5 3.5S10.06 13 12 13s3.5-1.56 3.5-3.5S13.94 6 12 6zm0 5c-.83 0-1.5-.67-1.5-1.5S11.17 8 12 8s1.5.67 1.5 1.5S12.83 11 12 11z"/></svg>
+        <span>Account</span>
+      </button>
+
+      <mat-expansion-panel *ngIf="optionsAfterLogin && !optionsGuest">
+        <mat-expansion-panel-header>
+            <button mat-button class="buttons" id="tickets">
+              <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/></svg>
+              <span (click)="optionTicket()">Tickets</span>
+            </button>
+        </mat-expansion-panel-header>
+        <button mat-button class="buttons" id="sendTicket" routerLink="/createTicket" (click)="menuleft.toggle()">Send ticket</button>
+        <button mat-button class="buttons" id="receivedTickets" routerLink="/receivedTickets" (click)="menuleft.toggle()">Ticket history</button>
+      </mat-expansion-panel>
+  
+      <!--<button *ngIf="optionsAfterLogin" mat-button class="buttons">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"/></svg>
+        <span (click)="optionTicket()">Tickets</span>
+      </button>
+
+      <mat-divider *ngIf="this.ticketOption"></mat-divider>
+      <button *ngIf="this.ticketOption" mat-button class="buttons">
+        <span routerLink="/createTicket" (click)="menuleft.toggle()">
+          Send ticket
+        </span>
+      </button>-->
+  
+      <mat-divider></mat-divider>
+  
+      <button *ngIf="optionsAdmin" mat-button class="buttons">
+        <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><g><rect fill="none" height="24" width="24"/></g><g><g><circle cx="17" cy="15.5" fill-rule="evenodd" r="1.12"/><path d="M17,17.5c-0.73,0-2.19,0.36-2.24,1.08c0.5,0.71,1.32,1.17,2.24,1.17 s1.74-0.46,2.24-1.17C19.19,17.86,17.73,17.5,17,17.5z" fill-rule="evenodd"/><path d="M18,11.09V6.27L10.5,3L3,6.27v4.91c0,4.54,3.2,8.79,7.5,9.82 c0.55-0.13,1.08-0.32,1.6-0.55C13.18,21.99,14.97,23,17,23c3.31,0,6-2.69,6-6C23,14.03,20.84,11.57,18,11.09z M11,17 c0,0.56,0.08,1.11,0.23,1.62c-0.24,0.11-0.48,0.22-0.73,0.3c-3.17-1-5.5-4.24-5.5-7.74v-3.6l5.5-2.4l5.5,2.4v3.51 C13.16,11.57,11,14.03,11,17z M17,21c-2.21,0-4-1.79-4-4c0-2.21,1.79-4,4-4s4,1.79,4,4C21,19.21,19.21,21,17,21z" fill-rule="evenodd"/></g></g></svg>
+        <span routerLink="/requiredRoles/{{this.myInstitName}}/{{this.firstName}}/{{this.lastName}}" (click)="menuleft.toggle()">Required Roles</span>
+      </button>
+  
+      <mat-divider *ngIf="optionsAdmin"></mat-divider>
+  
+      <button *ngIf="!optionsAfterLogin" mat-button class="buttons">
+        <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><g><rect fill="none" height="24" width="24"/></g><g><path d="M11,7L9.6,8.4l2.6,2.6H2v2h10.2l-2.6,2.6L11,17l5-5L11,7z M20,19h-8v2h8c1.1,0,2-0.9,2-2V5c0-1.1-0.9-2-2-2h-8v2h8V19z"/></g></svg>
+        <span routerLink="/login" (click)="menuleft.toggle()">Login</span>
+      </button>
+  
+      <button *ngIf="!optionsAfterLogin" mat-button class="buttons">
+        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM7.07 18.28c.43-.9 3.05-1.78 4.93-1.78s4.51.88 4.93 1.78C15.57 19.36 13.86 20 12 20s-3.57-.64-4.93-1.72zm11.29-1.45c-1.43-1.74-4.9-2.33-6.36-2.33s-4.93.59-6.36 2.33C4.62 15.49 4 13.82 4 12c0-4.41 3.59-8 8-8s8 3.59 8 8c0 1.82-.62 3.49-1.64 4.83zM12 6c-1.94 0-3.5 1.56-3.5 3.5S10.06 13 12 13s3.5-1.56 3.5-3.5S13.94 6 12 6zm0 5c-.83 0-1.5-.67-1.5-1.5S11.17 8 12 8s1.5.67 1.5 1.5S12.83 11 12 11z"/></svg>
+        <span routerLink="/register" (click)="menuleft.toggle()">Register</span>
+      </button>
+  
+      <button *ngIf="optionsAfterLogin" mat-button class="buttons">
+        <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF"><g><path d="M0,0h24v24H0V0z" fill="none"/></g><g><path d="M17,8l-1.41,1.41L17.17,11H9v2h8.17l-1.58,1.58L17,16l4-4L17,8z M5,5h7V3H5C3.9,3,3,3.9,3,5v14c0,1.1,0.9,2,2,2h7v-2H5V5z"/></g></svg>
+        <span routerLink="/login" (click)="menuleft.toggle(); logout();">Logout</span>
+      </button>
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+  
+      <router-outlet></router-outlet>
+  
+    </mat-sidenav-content>
+  
+  </mat-sidenav-container>
+  

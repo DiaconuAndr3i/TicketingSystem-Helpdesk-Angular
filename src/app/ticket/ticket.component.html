@@ -1,5 +1,4 @@
-<app-navbar></app-navbar>
-<form [formGroup]="ticketForm" (ngSubmit)="onSubmit()">
+<!--<form [formGroup]="ticketForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
         <label for="exampleFormControlInput1">Title</label>
         <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Input title for ticket" formControlName="title">
@@ -32,4 +31,50 @@
     <div class="form-group ">
         <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Submit</button>
       </div>
+  </form>-->
+
+  <div class="panel-heading">
+    <div class="panel-title text-center">
+        <h2 class="title">Ticketing System - Create Ticket</h2>
+      </div>
+  </div> 
+
+  <form [formGroup]="ticketForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field appearance="legacy">
+      <mat-label>Title</mat-label>
+      <input matInput placeholder="Press title of ticket" formControlName="title">
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy">
+      <mat-label>Send to</mat-label>
+      <input matInput placeholder="Choose the person to send" ngModel="{{emailArrivail}}" formControlName="arrivalEmail">
+      <mat-icon mat-raised-button (click)="openDialog()" matSuffix>view_agenda</mat-icon>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Priority</mat-label>
+      <mat-select formControlName="priority">
+        <mat-option value="Important">Important</mat-option>
+        <mat-option value="Normal">Normal</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill">
+      <mat-label>Tags</mat-label>
+      <mat-select multiple formControlName="tag">
+        <mat-option *ngFor="let tag of tags" [value]="tag">{{tag}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="form-field">
+      <textarea matInput placeholder="Enter your first message" maxlength="500" #message formControlName="contentMessage"></textarea>
+      <mat-hint align="end">{{message.value.length}}/500</mat-hint>
+    </mat-form-field>
+
+
+
+    <div class="form-group">
+      <button mat-raised-button type="submit" >Submit</button>
+    </div>
   </form>

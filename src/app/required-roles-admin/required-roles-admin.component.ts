@@ -29,18 +29,18 @@ export class RequiredRolesAdminComponent implements OnInit {
   }
 
   onClick(dummy: any){
-    debugger
-    this.userService.getAllUsers(this.institutionName).subscribe(response => {
-      this.users = response;
-      if (dummy == 0){
-        this.usersInformations.userInformationsMethod(this.users);
+    if(dummy == 0){
+      this.userService.getAllUsers(this.institutionName).subscribe(response =>{
+        this.usersInformations.userInformationsMethod(response);
         this.usersInformations.showSpecificList(-1);
-      }
-      else{
-        this.usersInformations.guestInformationsMethod(this.guests);
+      });
+    }
+    else{
+      this.userService.getAllGuest(this.institutionName).subscribe(response =>{
+        this.usersInformations.guestInformationsMethod(response);
         this.usersInformations.showSpecificList(1);
-      }   
-    });
+      });
+    }
   }
 
 }

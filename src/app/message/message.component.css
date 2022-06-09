@@ -1,0 +1,37 @@
+.message{
+    width: 60%;
+    margin: auto;
+    margin-top: 4%;
+    margin-bottom: 1%;
+}
+
+.left{
+    float: left;
+    margin-left: 5%;
+}
+
+.right{
+    float: right;
+    margin-right: 5%;
+}
+
+.form-field{
+    width: 50%;
+    position: fixed;
+    bottom: 5%;
+    left: 25%;
+}
+
+.form-group{
+    position: fixed;
+    bottom: 8%;
+    left: 80%;
+}
+
+#container{
+    height: 80%;
+    overflow-y: auto;
+}
+
+
+

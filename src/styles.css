@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.success
+.mat-simple-snack-bar-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #00FF00;
+}
+
+.error
+.mat-simple-snack-bar-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: red;
+}

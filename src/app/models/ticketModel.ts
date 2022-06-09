@@ -3,6 +3,7 @@ export class TicketModel{
     CreatedDate: Date| undefined;
     ArrivalEmail: string| undefined;
     TicketCreatorEmail: string | undefined;
+    NewActivity: Boolean;
     Priority: string| undefined;
     Status: string| undefined;
     Tag: string[]| undefined;
@@ -13,5 +14,6 @@ export class TicketModel{
         this.CreatedDate = new Date();
         this.Status = 'Open';
         this.TicketCreatorEmail = localStorage.getItem('email') || "";
+        this.NewActivity = true;
     }
 }

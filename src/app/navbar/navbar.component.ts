@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthentificationService } from '../authentification.service';
 
 @Component({
@@ -15,8 +15,11 @@ export class NavbarComponent implements OnInit {
   myInstitName?: string;
   firstName?: string;
   lastName?: string;
+  contentShow: string = 'login';
 
-  constructor(private authService: AuthentificationService, private route: ActivatedRoute) { }
+  constructor(private authService: AuthentificationService, 
+    private route: ActivatedRoute) {
+     }
 
   ngOnInit(): void {
     if (this.authService.isLoggedin()){
@@ -28,6 +31,11 @@ export class NavbarComponent implements OnInit {
         if (this.roles.includes('Administrator'))
           this.optionsAdmin = true;
       } 
+  }
+
+  showContent(contentShow: string){
+    /*this.contentShow = contentShow;
+    this.showComp.contentInformationsMethod(this.contentShow);*/
   }
 
 }

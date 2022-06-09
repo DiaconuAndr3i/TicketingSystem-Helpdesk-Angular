@@ -1,0 +1,18 @@
+mat-tab-group{
+    width: 80%;
+    margin: 0 auto;
+}
+
+mat-card-title #delete{
+
+    float: right;
+    margin-top: -8px;
+}
+
+#buttonFinal{
+    margin-right: 10px;
+}
+
+#priority{
+    float: right;
+}

@@ -1,5 +1,3 @@
-<app-navbar></app-navbar>
-
 <div class="container">
   <div class="row main">
     <div class="panel-heading">
@@ -9,106 +7,101 @@
                </div>
           </div> 
     <div class="main-login main-center">
+
       <form class="form-horizontal" method="post" action="#" [formGroup]="registrationForm" (ngSubmit)="onRegister()">
-        
-        <div class="form-group" >
-          <label for="name" class="cols-sm-2 control-label">First name</label>
-          <div class="cols-sm-10">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-              <input type="text" class="form-control" name="firtstName" id="firtstName"  placeholder="Your First name" formControlName="first_Name"/>
-            </div>
-          </div>
-        </div>
+          
+        <mat-form-field appearance="outline">
+          <mat-label> Enter your first name</mat-label>
+          <input matInput placeholder="FirstName" formControlName="first_Name" required>
+          <mat-error *ngIf="f['first_Name'].getError('required')!=null">First name is required</mat-error>
+          <mat-error *ngIf="f['first_Name'].getError('minlength')!=null">First name should be at least 2 letters</mat-error>
+          <!--<mat-error *ngIf="this.registrationForm.value.first_Name.invalid">{{getErrorMessageName(false)}}</mat-error>-->
+        </mat-form-field>
+      
+        <mat-form-field appearance="outline">
+          <mat-label> Enter your last name</mat-label>
+          <input matInput placeholder="LastName" formControlName="last_Name" required>
+          <mat-error *ngIf="f['last_Name'].getError('required')!=null">Last name is required</mat-error>
+          <mat-error *ngIf="f['last_Name'].getError('minlength')!=null">Last name should be at least 2 letters</mat-error>
+          <!--<mat-error *ngIf="this.registrationForm.value.last_Name.invalid">{{getErrorMessageName(true)}}</mat-error>-->
+        </mat-form-field>
+      
+        <mat-form-field appearance="outline">
+          <mat-label> Enter your email</mat-label>
+          <input matInput placeholder="test@test.com" formControlName="email" required>
+          <mat-error *ngIf="f['email'].getError('required')!=null">Email is required</mat-error>
+          <mat-error *ngIf="f['email'].getError('pattern')!=null">Improper format</mat-error>
+          <!--<mat-error *ngIf="this.registrationForm.value.email.invalid">{{getErrorMessageEmail()}}</mat-error>-->
+        </mat-form-field>
+      
+        <mat-form-field appearance="outline">
+          <mat-label> Enter your mobile</mat-label>
+          <input matInput placeholder="PhoneNumber" formControlName="phone_Number" required>
+          <mat-error *ngIf="f['phone_Number'].getError('required')!=null">Phone number is required</mat-error>
+          <!--<mat-error *ngIf="this.registrationForm.value.phone_Number.invalid">{{getErrorMessagePhoneNumber()}}</mat-error>-->
+        </mat-form-field>
+      
+        <mat-form-field appearance="outline"
+            [hideRequiredMarker]="hideRequiredControl.value"
+            [floatLabel]="floatLabelControl.value">
+          <mat-select formControlName="roleName" required>
+            <mat-option *ngFor="let role of this.roles" value="{{role.roleName}}">{{role.roleName}}</mat-option>
+          </mat-select>
+          <mat-label> <i> Role</i></mat-label>
+          <mat-error *ngIf="f['roleName'].getError('required')!=null">Role is required</mat-error>
+        </mat-form-field>
+      
+        <mat-form-field appearance="outline"
+            [hideRequiredMarker]="hideRequiredControl.value"
+            [floatLabel]="floatLabelControl.value">
+          <mat-select formControlName="institutionName" required>
+            <mat-option *ngFor="let institution of this.institutions" value="{{institution.nameInstitution}}">{{institution.nameInstitution}}</mat-option>
+          </mat-select>
+          <mat-label> <i> Institution</i></mat-label>
+          <mat-error *ngIf="f['institutionName'].getError('required')!=null">Institution is required</mat-error>
+        </mat-form-field>
 
-        <div class="form-group">
-          <label for="name" class="cols-sm-2 control-label">Last name</label>
-          <div class="cols-sm-10">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-              <input type="text" class="form-control" name="lastName" id="lastName"  placeholder="Your Last name" formControlName="last_Name"/>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="email" class="cols-sm-2 control-label">Email</label>
-          <div class="cols-sm-10">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-              <input type="text" class="form-control" name="email" id="email"  placeholder="Your Email" formControlName="email"/>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="mobile" class="cols-sm-2 control-label required">Mobile</label>
-          <div class="cols-sm-10">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-mobile" aria-hidden="true"></i></span>
-              <input type="text" class="form-control" name="mobile" id="mobile"  placeholder="Your Mobile" formControlName="phone_Number"/>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <label for="country" class="cols-sm-2 control-label">Role</label>
-          <div class="cols-sm-10">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-map-marker fa-lg" aria-hidden="true"></i></span>
-              <select formControlName="roleName" class="form-control" name="roleName" id="roleName"  placeholder="Please select your Role">
-                                <option>-select-</option>
-                                <option>Dean</option>
-                                <option>Secretary Administration and Buisness</option>
-                                <option>Secretary Computer and Information Technology</option>
-                                <option>Secretary Computer Science</option>
-                                <option>Secretary Mathematics</option>
-                                <option>Student</option>
-                                </select>
-            </div>
-          </div>
-        </div>
-
-
-        <div class="form-group">
-          <label for="nationality" class="cols-sm-2 control-label">Institution name</label>
-          <div class="cols-sm-10">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-globe fa-lg" aria-hidden="true"></i></span>
-              <select class="form-control" name="institutionName" id="institutionName"  placeholder="Please select your Institution Name" formControlName="institutionName">
-                                <option>-select-</option>
-                                <option>Faculty of Mathematics and Computer Science</option>
-                                <option>Faculty of Administration and Business</option>
-                                </select>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group" >
-          <label for="password" class="cols-sm-2 control-label">Password</label>
-          <div class="cols-sm-10">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-              <input type="password" class="form-control" name="password" id="password"  placeholder="Choose a password" formControlName="password"/>
-            </div>
-          </div>
-        </div>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password" >
+            <span mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </span>
+            <mat-error *ngIf="f['password'].getError('required')!=null">Password is required</mat-error>
+            <mat-error *ngIf="f['password'].getError('minlength')!=null">Password should be at least 6 letters</mat-error>
+          </mat-form-field>
 
 
+          <mat-form-field appearance="outline">
+            <mat-label>Confirm password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="confirmPassword">
+            <span mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </span>
+            <mat-error *ngIf="f['confirmPassword'].getError('required')!=null">Confirmation password is required</mat-error>
+            <mat-error *ngIf="f['confirmPassword'].getError('minlength')!=null">Conf-password should be at least 6 letters</mat-error>
+            <mat-error *ngIf="f['confirmPassword'].getError('matchPasswords')!=null">Passwords mismatched</mat-error>
+          </mat-form-field>
+
+
+
+      
+      
         <div class="form-group ">
-          <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+          <button [disabled]="registrationForm.invalid" type="submit" class="btn btn-primary btn-lg btn-block login-button">Register</button>
         </div>
-
-
+      
+      
         <div class="alreadyAccount">
           <span>
               Already have an account? Login <a routerLink="/login">here</a>.
           </span>
         
         </div>
-
-
+      
+      
       </form>
+
     </div>
   </div>
 </div>

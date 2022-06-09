@@ -1,5 +1,3 @@
-<app-navbar></app-navbar>
-
 <div class="container">
     <div class="row main">
       <div class="panel-heading">
@@ -11,45 +9,36 @@
       <div class="main-login main-center">
         <form class="form-horizontal" method="post" action="#" [formGroup]="loginForm" (ngSubmit)="onLogin()">
           
-  
-          <div class="form-group">
-            <label for="email" class="cols-sm-2 control-label">Email</label>
-            <div class="cols-sm-10">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                <input type="text" class="form-control" name="email" id="email"  placeholder="Your Email" formControlName="email"/>
-              </div>
-            </div>
-          </div>
-  
-  
-          <div class="form-group">
-            <label for="nationality" class="cols-sm-2 control-label">Institution name</label>
-            <div class="cols-sm-10">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-globe fa-lg" aria-hidden="true"></i></span>
-                <select class="form-control" name="institutionName" id="institutionName"  placeholder="Please select your Institution Name" formControlName="institution">
-                                  <option>-select-</option>
-                                  <option>Faculty of Mathematics and Computer Science</option>
-                                  <option>Faculty of Administration and Business</option>
-                                  </select>
-              </div>
-            </div>
-          </div>
-  
-          <div class="form-group" >
-            <label for="password" class="cols-sm-2 control-label">Password</label>
-            <div class="cols-sm-10">
-              <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                <input type="password" class="form-control" name="password" id="password"  placeholder="Enter your password" formControlName="password"/>
-              </div>
-            </div>
-          </div>
+          <mat-form-field appearance="outline">
+            <mat-label> Enter your email</mat-label>
+            <input matInput placeholder="test@test.com" formControlName="email" required>
+            <mat-error *ngIf="f['email'].getError('required')!=null">Email is required</mat-error>
+            <mat-error *ngIf="f['email'].getError('pattern')!=null">Improper format</mat-error>
+          </mat-form-field>
+      
+          <mat-form-field appearance="outline"
+              [hideRequiredMarker]="hideRequiredControl.value"
+              [floatLabel]="floatLabelControl.value">
+            <mat-select formControlName="institution" required>
+              <mat-option *ngFor="let institution of this.instituions" value="{{institution.nameInstitution}}">{{institution.nameInstitution}}</mat-option>
+            </mat-select>
+            <mat-label> <i> Institution</i></mat-label>
+            <mat-error *ngIf="f['institution'].getError('required')!=null">Institution is required</mat-error>
+          </mat-form-field>
+      
+      
+          <mat-form-field appearance="outline">
+            <mat-label>Enter your password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+            <span mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </span>
+            <mat-error *ngIf="f['password'].getError('required')!=null">Password is required</mat-error>
+          </mat-form-field>
   
   
           <div class="form-group ">
-            <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Login</button>
+            <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary btn-lg btn-block login-button">Login</button>
           </div>
   
   
@@ -66,4 +55,11 @@
     </div>
   </div>
   
+
+  <form [formGroup]="loginForm" class="form">
+
+
+
+  </form>
+
   <p>Form Status: {{ loginForm.status }}</p>

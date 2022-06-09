@@ -1,0 +1,50 @@
+<div class="panel-heading">
+    <div class="panel-title text-center">
+        <h2 class="title">Ticketing System - Ticket history</h2>
+      </div>
+</div> 
+<mat-tab-group (selectedTabChange)="eventEmitted($event)">
+    <mat-tab label="Received"> 
+
+        <mat-card *ngFor="let ticket of this.tickets">
+            <mat-card-title>
+                <span>
+                    {{ticket.ticketModel.title}}
+                </span>
+                <button id="delete" mat-fab color="primary" (click)="deleteTicket(ticket.idTicket)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-card-title>
+            <mat-card-subtitle>{{ticket.ticketModel.ticketCreatorEmail}}</mat-card-subtitle>
+            <mat-card-content>
+            </mat-card-content>
+            <mat-card-actions id="buttonFinal">
+              <button mat-raised-button matBadge="!" [matBadgeHidden]="ticket.ticketModel.newActivity==false" routerLink="/message/{{ticket.idTicket}}" (click)="changeActivity(ticket.idTicket)">Open conversation</button>
+              <p id="priority">{{ticket.ticketModel.priority}}</p>
+            </mat-card-actions>
+        </mat-card>
+
+    </mat-tab>
+    <mat-tab label="Sent"> 
+        
+        <mat-card *ngFor="let ticket of this.tickets">
+            <mat-card-title>
+                <span>
+                    {{ticket.ticketModel.title}}
+                </span>
+                <button id="delete" mat-fab color="primary" (click)="deleteTicket(ticket.idTicket)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </mat-card-title>
+            <mat-card-subtitle>{{ticket.ticketModel.arrivalEmail}}</mat-card-subtitle>
+            <mat-card-content>
+            </mat-card-content>
+            <mat-card-actions id="buttonFinal">
+              <button mat-raised-button matBadge="!" [matBadgeHidden]="ticket.ticketModel.newActivity==false" (click)="changeActivity(ticket.idTicket)" routerLink="/message/{{ticket.idTicket}}">Open conversation</button>
+              <p id="priority">{{ticket.ticketModel.priority}}</p>
+            </mat-card-actions>
+        </mat-card>
+
+    </mat-tab>
+    <mat-tab label="Closed"> Content 3 </mat-tab>
+</mat-tab-group>
