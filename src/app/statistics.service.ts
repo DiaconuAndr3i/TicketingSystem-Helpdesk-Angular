@@ -14,7 +14,7 @@ export class StatisticsService {
 
   constructor(private http: HttpClient) { }
 
-  getNumberOfUsers(): Observable<number>{
+  /*getNumberOfUsers(): Observable<number>{
     return this.http.get<number>(`${this.URL}/numberOfUsers`);
   }
 
@@ -28,5 +28,24 @@ export class StatisticsService {
 
   getNumberOfInstitutions(): Observable<number>{
     return this.http.get<number>(`${this.URL}/numberOfInstituions`);
+  }*/
+
+  peoplePerDepartment(institutionName: any): Observable<any>{
+    var institutionName = institutionName.replace(/ /g, "%20");
+    const url = `${this.URL}/peoplePerDepartment/${institutionName}`;
+    return  this.http.get<any>(url);
+  }
+
+  numberOfTicketsOpenClosed(): Observable<any>{
+    return this.http.get<any>(`${this.URL}/numberOfTicketsOpenClosed`);
+  }
+
+  getPercentageGuests(): Observable<number>{
+    return this.http.get<number>(`${this.URL}/percentageGuests`);
+  }
+
+  getFinanceData(): Observable<any>{
+    const url = 'https://financialmodelingprep.com/api/v3/fx?apikey=f2f3f50902f6fed4eb909d626e8a7b92CEVA';
+    return this.http.get<any>(url);
   }
 }

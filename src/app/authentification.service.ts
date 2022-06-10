@@ -35,7 +35,8 @@ export class AuthentificationService {
         localStorage.setItem('institution', loginData.institution);
         localStorage.setItem('firstName', response.firstName);
         localStorage.setItem('lastName', response.lastname);
-        this.router.navigate([`/home/${response.institution}/${response.firstName}/${response.lastname}`]);
+        //this.router.navigate([`/home/${response.institution}/${response.firstName}/${response.lastname}`]);
+        this.router.navigate([`/home`]);
         return response;
       }
     }));

@@ -1,27 +1,24 @@
 .container {
-	max-width: 1100px;
+	max-width: 100%;
 	margin: 0 auto;
 	overflow: auto;
 }
 
 .counters .container {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	grid-gap: 30px;
+	grid-template-columns: repeat(3, 1fr);
 	text-align: center;
 }
 
-.counters i {
-	color: lightskyblue;
-	margin-bottom: 5px;
+.counters{
+	width: 80%;
+	margin: auto;
 }
 
-.counters .counter {
-	font-size: 45px;
-	margin: 10px 0;
+.stats{
 }
 
-@media (max-width: 700px) {
+@media (max-width: 1500px) {
 	.counters .container {
 		grid-template-columns: repeat(2, 1fr);
 	}
@@ -29,6 +26,26 @@
 	.counters .container > div:nth-of-type(1),
 	.counters .container > div:nth-of-type(2) {
 		border-bottom: 1px lightskyblue solid;
-		padding-bottom: 20px;
 	}
+}
+
+@media (max-width: 500px) {
+	.counters .container {
+		grid-template-columns: repeat(1, 1fr);
+	}
+
+	.counters .container > div:nth-of-type(1),
+	.counters .container > div:nth-of-type(2) {
+		border-bottom: 1px lightskyblue solid;
+	}
+}
+
+#financeC{
+	width: 50%;
+	margin: auto;
+}
+
+hr{
+	width: 10%;
+	margin: auto;
 }

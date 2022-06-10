@@ -20,7 +20,8 @@ export class RequiredRolesAdminComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    this.institutionName = String(this.route.snapshot.paramMap.get('myInstitName'));
+    //this.institutionName = String(this.route.snapshot.paramMap.get('myInstitName'));
+    this.institutionName = localStorage.getItem('institution') || "";
     this.userService.getAllUsers(this.institutionName).subscribe(response =>{
       this.users = response;
       this.usersInformations.userInformationsMethod(this.users);

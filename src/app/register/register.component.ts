@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, FormControl } from '@angular/forms';
 import { AuthentificationService } from '../authentification.service';
@@ -5,6 +6,7 @@ import { InstitutionService } from '../institution.service';
 import { institution } from '../interfaces/institution';
 import { role } from '../interfaces/role';
 import { Registration } from '../models/registration';
+import { NotifierService } from '../notifier.service';
 import { RoleService } from '../role.service';
 
 @Component({
@@ -38,7 +40,8 @@ export class RegisterComponent implements OnInit {
   constructor(private fb: FormBuilder, 
     private authentificationService: AuthentificationService,
     private roleService: RoleService,
-    private institutionService: InstitutionService) {
+    private institutionService: InstitutionService,
+    private notificationService: NotifierService) {
       this.options = this.fb.group({
         hideRequired: this.hideRequiredControl,
         floatLabel: this.floatLabelControl,
@@ -82,7 +85,10 @@ export class RegisterComponent implements OnInit {
 
   onRegister(){
     var registerData = new Registration(this.registrationForm.value);
-    this.authentificationService.register(registerData).subscribe();
+    this.authentificationService.register(registerData).subscribe(() => {
+    },(error: HttpErrorResponse) => {
+      this.notificationService.notificationAlert('Register failed', 'error');
+    });
   }
 
   /*getErrorMessageName(name: boolean) {
