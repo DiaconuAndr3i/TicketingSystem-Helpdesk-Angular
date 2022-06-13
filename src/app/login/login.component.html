@@ -40,6 +40,14 @@
           <div class="form-group ">
             <button [disabled]="loginForm.invalid" type="submit" class="btn btn-primary btn-lg btn-block login-button">Login</button>
           </div>
+
+
+          <div class="alreadyAccount">
+            <span>
+                Forgot password? Click <a routerLink="/resetPassword">here</a>.
+            </span>
+          
+          </div>
   
   
           <div class="alreadyAccount">
@@ -56,10 +64,10 @@
   </div>
   
 
-  <form [formGroup]="loginForm" class="form">
+  <!--<form [formGroup]="loginForm" class="form">
 
 
 
-  </form>
+  </form>-->
 
   <!--<p>Form Status: {{ loginForm.status }}</p>-->

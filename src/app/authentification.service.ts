@@ -10,6 +10,7 @@ import { map, Observable, of } from 'rxjs';
 export class AuthentificationService {
 
   private authUrl = 'https://localhost:5001/api/Authentification';
+  private chagePasswordUrl = 'http://localhost:4200/changePassword/';
   httpOptions = {
     headers:  new HttpHeaders({'Content-Type': 'application/json'})
   };
@@ -39,6 +40,28 @@ export class AuthentificationService {
         this.router.navigate([`/home`]);
         return response;
       }
+    }));
+  }
+
+  resetPassword(resetPasswordModel: any): Observable<any>{
+    debugger;
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'changePassword': this.chagePasswordUrl
+    });
+    let optionsHttp = {headers: headers};
+    return this.http.post<any>(`${this.authUrl}/resetPassword`, resetPasswordModel, optionsHttp)
+    .pipe(map((response: any) => {
+      this.router.navigate([`/login`]);
+      return response;
+    }));
+  }
+
+  changePassword(changePasswordModel: any): Observable<any>{
+    return this.http.post<any>(`${this.authUrl}/changePassword`, changePasswordModel, this.httpOptions)
+    .pipe(map((response: any) => {
+      this.router.navigate([`/login`]);
+      return response;
     }));
   }
 

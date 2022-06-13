@@ -37,6 +37,8 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatCardModule} from '@angular/material/card';
 import {MatBadgeModule} from '@angular/material/badge';
 import { MessageComponent } from './message/message.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +53,9 @@ import { MessageComponent } from './message/message.component';
     TicketComponent,
     DialogEmailArrivailsComponent,
     ReceivedTicketsComponent,
-    MessageComponent
+    MessageComponent,
+    ResetPasswordComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
