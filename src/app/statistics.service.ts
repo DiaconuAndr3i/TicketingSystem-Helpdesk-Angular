@@ -45,7 +45,7 @@ export class StatisticsService {
   }
 
   getFinanceData(): Observable<any>{
-    const url = 'https://financialmodelingprep.com/api/v3/fx?apikey=f2f3f50902f6fed4eb909d626e8a7b92CEVA';
+    const url = 'https://financialmodelingprep.com/api/v3/fx?apikey=CEVA';
     return this.http.get<any>(url);
   }
 }
