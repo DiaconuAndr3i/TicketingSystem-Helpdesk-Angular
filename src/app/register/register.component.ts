@@ -85,7 +85,8 @@ export class RegisterComponent implements OnInit {
 
   onRegister(){
     var registerData = new Registration(this.registrationForm.value);
-    this.authentificationService.register(registerData).subscribe(() => {
+    this.authentificationService.register(registerData).subscribe((response:any) => {
+      this.notificationService.notificationAlert('Successfully registration', 'success');
     },(error: HttpErrorResponse) => {
       this.notificationService.notificationAlert('Register failed', 'error');
     });
