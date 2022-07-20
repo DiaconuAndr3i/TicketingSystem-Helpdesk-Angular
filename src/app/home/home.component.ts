@@ -1,6 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { StatisticsService } from '../statistics.service';
 import { Chart } from 'chart.js';
+import { WebSocketStatisticsService } from '../web-socket-statistics.service';
+import { webSocket } from 'rxjs/webSocket';
+
 
 @Component({
   selector: 'app-home',
@@ -9,7 +12,11 @@ import { Chart } from 'chart.js';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  constructor(private statsService: StatisticsService) { 
+  chartGetPercentageGuestUsers: any;
+  chartGetNumberOfTicketsOpenClosed: any;
+  chartGetPeoplePerDep: any;
+
+  constructor(private statsService: StatisticsService, private webScoketStats: WebSocketStatisticsService) { 
     }
 
   ngOnInit(): void {
@@ -30,24 +37,45 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   getPeoplePerDep(institution: any){
     this.statsService.peoplePerDepartment(institution).subscribe((result: any) => {    
-      const peoplePerDep = new Chart("peoplePerDep", this.getConfigurationForChart(result, 'People per department'));
+      this.chartGetPeoplePerDep = new Chart("peoplePerDep", this.getConfigurationForChart(result, 'People per department'));
     });
   }
 
   getNumberOfTicketsOpenClosed(){
     this.statsService.numberOfTicketsOpenClosed().subscribe((result: any) => {
-      const openClosed = new Chart("openClosed", this.getConfigurationForChart(result, 'Tickets Open - Closed'));
+      console.log(result);
+      this.chartGetNumberOfTicketsOpenClosed = new Chart("openClosed", this.getConfigurationForChart(result, 'Tickets Open - Closed'));
+    });
+    this.webScoketStats.getFromWebSocketKafkaService(3000).subscribe((dataFromServer: any) => { //port for #tickets
+      let dataJSON = JSON.parse(dataFromServer);
+      console.log("Sunt pe open closed:", dataJSON);
+      this.chartGetNumberOfTicketsOpenClosed.config.data.datasets[0].data = [dataJSON.Open, dataJSON.Closed]
+      this.chartGetNumberOfTicketsOpenClosed.update();
     });
   }
 
   getPercentageGuestUsers(){
     this.statsService.getPercentageGuests().subscribe((result: any) => {
-      const res = {
-        guests: result,
-        users: (100 - result) 
-      };
-      const guestsUsers = new Chart("guestsUsers", this.getConfigurationForChart(res, 'Guest User'));
+      const res = this.getPercentageModel(result);
+      this.chartGetPercentageGuestUsers = new Chart("guestsUsers", this.getConfigurationForChart(res, 'Guest User'));
     });
+
+    this.webScoketStats.getFromWebSocketKafkaService(3001).subscribe((dataFromServer: any) => {
+      let result: number = +dataFromServer;
+      const res = this.getPercentageModel(result);
+      console.log("Sunt pe guest user:", res);
+      this.chartGetPercentageGuestUsers.config.data.datasets[0].data = [res.guests, res.users];
+      this.chartGetPercentageGuestUsers.update();
+    });
+
+  }
+
+  getPercentageModel(result: any){
+    let res = {
+      guests: result,
+      users: (100 - result)
+    };
+    return res;
   }
 
   getFinanceData(){

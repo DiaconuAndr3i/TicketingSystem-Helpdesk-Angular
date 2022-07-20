@@ -17,4 +17,11 @@ export class NotifierService {
     });
   }
 
+  newMessageAlert(creatorEmail: any){
+    this.notification.open(`New Message from ${creatorEmail}`, 'Ok', {
+      horizontalPosition: 'right',
+      verticalPosition: 'top',
+    })
+  }
+
 }

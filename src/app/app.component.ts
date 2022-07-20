@@ -1,8 +1,11 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthentificationService } from './authentification.service';
 import { ComunicationSidenavService } from './comunication-sidenav.service';
+import { NotifierService } from './notifier.service';
+import { WebSocketStatisticsService } from './web-socket-statistics.service';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +26,9 @@ export class AppComponent implements OnInit, OnDestroy{
 
   constructor(private authService: AuthentificationService, 
     private route: ActivatedRoute,
-    private comunication: ComunicationSidenavService) {
+    private comunication: ComunicationSidenavService,
+    private notifierAlert: NotifierService,
+    private webSocket: WebSocketStatisticsService) {
       this.subscription = this.comunication.comunicationLoginResponse$.subscribe((response: any) => {
         this.optionsAfterLogin = true;
         this.firstName = response.firstName;
@@ -59,7 +64,18 @@ export class AppComponent implements OnInit, OnDestroy{
       }
       else if( this.roles.includes('Guest') )
         this.optionsGuest = true;
+      
+      this.webSocket.getFromWebSocketKafkaService(3002).subscribe((response: any) => {
+        let myEmail = localStorage.getItem('email') || "";
+        let dataJson = JSON.parse(response);
+        
+        if(myEmail === dataJson.ArrivalEmail)
+          this.notifierAlert.newMessageAlert(dataJson.CreatorEmail);
+      });
     }
+
+    
+
   }
 
   optionTicket(){

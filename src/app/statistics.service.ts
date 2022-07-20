@@ -45,7 +45,7 @@ export class StatisticsService {
   }
 
   getFinanceData(): Observable<any>{
-    const url = 'url open api';
+    const url = '';
     return this.http.get<any>(url);
   }
 }
